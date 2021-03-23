@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Wine:</strong>
+  <%= @wine_strain.wine %>
+</p>
+
+<p>
+  <strong>Strain:</strong>
+  <%= @wine_strain.strain %>
+</p>
+
+<%= link_to 'Edit', edit_wine_strain_path(@wine_strain) %> |
+<%= link_to 'Back', wine_strains_path %>

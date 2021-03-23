@@ -1,0 +1,27 @@
+<%= form_with(model: wine_strain, local: true) do |form| %>
+  <% if wine_strain.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(wine_strain.errors.count, "error") %> prohibited this wine_strain from being saved:</h2>
+
+      <ul>
+      <% wine_strain.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :wine_id %>
+    <%= form.text_field :wine_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :strain_id %>
+    <%= form.text_field :strain_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

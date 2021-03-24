@@ -19,7 +19,7 @@
 <table>
   <div class="field">
     <%= form.label :strains %>
-    <%= form.collection_check_boxes(:strain_ids, Strain.all, :id, :name) do |b| %>
+    <%= form.collection_check_boxes(:strain_ids, Strain.where(available: true), :id, :name) do |b| %>
       <%= b.label class: 'label-checkbox' do %>
       <%= b.check_box + b.text %>
       <br>

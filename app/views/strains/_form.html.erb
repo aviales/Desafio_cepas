@@ -1,4 +1,5 @@
 <%= form_with(model: strain, local: true) do |form| %>
+
   <% if strain.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(strain.errors.count, "error") %> prohibited this strain from being saved:</h2>
@@ -16,7 +17,13 @@
     <%= form.text_field :name %>
   </div>
 
+   <div class="field">
+    <%= form.label 'Available' %>
+    <%= form.check_box :available %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
+  
 <% end %>

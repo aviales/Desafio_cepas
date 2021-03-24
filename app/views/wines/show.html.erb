@@ -5,14 +5,7 @@
   <%= @wine.name %>
 </p>
 
-<% if  @wine.name.present? %>
-<p><strong>Name:</strong></p>
-<ul>
-<% @wine.name.each do |name| %>
-<li><%= wine.name %></li>
-<% end %>
-</ul> 
-<% end %> 
+
 
 <%= link_to 'Edit', edit_wine_path(@wine) %> |
 <%= link_to 'Back', wines_path %>

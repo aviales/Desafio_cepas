@@ -26,7 +26,8 @@ class WinesController < ApplicationController
     respond_to do |format|
       if @wine.save
         wine_params[:strain_ids].reject(&:empty?).each_with_index do |id, index|
-          WineStrain.create!(wine_id: @wine.id, strain_id: id, percentage: wine_params[:percentages][index])
+          @percentage_list = wine_params[:percentage].reject(&:empty?)
+          @wine_strain = WineStrain.create(wine_id: @wine.id, strain_id: strain_id, percentage: @percentage_list[index])
         end
         format.html { redirect_to @wine, notice: "Wine was successfully created." }
         format.json { render :show, status: :created, location: @wine }
@@ -41,7 +42,10 @@ class WinesController < ApplicationController
   # PATCH/PUT /wines/1 or /wines/1.json
   def update
     respond_to do |format|
-      if @wine.update(wine_params)
+      if @wine.update(name: wine_params[:name])
+        wine_params[:strain_ids].reject(&:empty?).each_with_index do |strain_id, index|
+          @percentage_list = wine_params[:percentage].reject(&:empty?)
+        end
         format.html { redirect_to @wine, notice: "Wine was successfully updated." }
         format.json { render :show, status: :ok, location: @wine }
       else
@@ -68,6 +72,6 @@ class WinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def wine_params
-      params.require(:wine).permit(:name, strains_ids:[], percentages: [])
+      params.require(:wine).permit(:name, strain_ids:[], percentages: [])
     end
 end
